@@ -7,13 +7,11 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="/" element={< Login />} />
-      <Route 
-      path="/chat"
-      element={username ? <ChatRoom /> : <Navigate to="/" />}
+      <Route path="/" element={<Login />} />
+      <Route
+        path="/chat"
+        element={username ? <ChatRoom /> : <Navigate to="/" />}
       />
     </Routes>
   );
 }
-
-export default App;
