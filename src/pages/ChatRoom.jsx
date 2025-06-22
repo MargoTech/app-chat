@@ -1,5 +1,18 @@
+import { useState } from "react";
+import { useChat } from "../context/ChatContext";
+import MessageBubble from "../components/MessageBubble";
+
 export default function ChatRoom() {
-  const username = localStorage.getItem("username");
+  const { username, messages, sendMessage } = useChat();
+  const [input, setInput] = useState("");
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (input.trim()) {
+      sendMessage(input);
+      setInput("");
+    }
+  };
 
   return (
     <div className="h-screen flex flex-col p-4 bg-gray-100">
