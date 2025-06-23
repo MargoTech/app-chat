@@ -16,11 +16,35 @@ export default function ChatRoom() {
 
   return (
     <div className="h-screen flex flex-col p-4 bg-gray-100">
-      <h1 className="text-xl font-semibold mb-4"> Welcome, {username}! </h1>
-      <div className="flex-1 bg-white rounded shadow p-4 overflow-y-auto">
-        {/* Messages will appear here */}
+      <header className="text-xl font-semibold mb-4">
+        {" "}
+        Welcome, {username}!{" "}
+      </header>
+      <div className="flex-1 overflow-y-auto px-2">
+        {messages.map((msg) => (
+          <MessageBubble
+            key={msg.id}
+            sender={msg.sender}
+            text={msg.text}
+            isOwn={msg.sender === username}
+          />
+        ))}
       </div>
-      <div className="mt-4">{/* Input field will go here */}</div>
+      <form onSubmit={handleSend} className="mt-4 flex gap-2">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type a message..."
+          className="flex-1 border rounded-lg p-2"
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Send
+        </button>
+      </form>
     </div>
   );
 }
