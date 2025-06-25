@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useChat } from "../context/ChatContext";
 import MessageBubble from "../components/MessageBubble";
 
 export default function ChatRoom() {
-  const { username, messages, sendMessage } = useChat();
+  const { username, messages, sendMessage, isTyping } = useChat();
   const [input, setInput] = useState("");
+  const bottomRef = useRef(null);
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -29,6 +30,14 @@ export default function ChatRoom() {
             isOwn={msg.sender === username}
           />
         ))}
+
+        {isTyping && (
+          <div className="text-gray-500 italic text-sm mt-2">
+            🤖 Bot is typing...
+          </div>
+        )}
+
+        <div ref={bottomRef} />
       </div>
       <form onSubmit={handleSend} className="mt-4 flex gap-2">
         <input
