@@ -4,12 +4,11 @@ import { fakeReply } from "../utils/mockSocket";
 const ChatContext = createContext();
 
 export function ChatProvider({ children }) {
-  const [messages, setMessages] = useState([]);
+  const [messagesByRoom, setMessagesByRoom] = useState([]);
   const username = localStorage.getItem("username");
-
   const [isTyping, setIsTyping] = useState(false);
 
-  const sendMessage = (text) => {
+  const sendMessage = (roomId, text) => {
     const msg = {
       id: crypto.randomUUID(),
       sender: username,
@@ -17,13 +16,19 @@ export function ChatProvider({ children }) {
       timestamp: new Date().toISOString(),
     };
 
-    setMessages((prev) => [...prev, msg]);
+    setMessagesByRoom((prev) => ({
+      ...prev,
+      [roomId]: [...ChatContext(prev[roomId] || []), msg],
+    }));
 
     setIsTyping(true);
 
-    fakeReply(msg.text).then((reply) => {
+    fakeReply(text).then((reply) => {
       setTimeout(() => {
-        setMessages((prev) => [...prev, reply]);
+        setMessagesByRoom((prev) => ({
+          ...prev,
+          [roomId]: [...(prev[roomId] || []), reply],
+        }));
         setIsTyping(false);
       }, 1000);
     });
