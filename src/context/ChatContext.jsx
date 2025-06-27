@@ -35,7 +35,9 @@ export function ChatProvider({ children }) {
   };
 
   return (
-    <ChatContext.Provider value={{ username, messages, sendMessage, isTyping }}>
+    <ChatContext.Provider
+      value={{ username, messagesByRoom, sendMessage, isTyping }}
+    >
       {children}
     </ChatContext.Provider>
   );
