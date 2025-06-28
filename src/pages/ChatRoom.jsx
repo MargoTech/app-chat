@@ -18,7 +18,7 @@ export default function ChatRoom() {
   const handleSend = (e) => {
     e.preventDefault();
     if (input.trim()) {
-      sendMessage(roomId, text);
+      sendMessage(roomId, input);
       setInput("");
     }
   };

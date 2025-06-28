@@ -18,7 +18,7 @@ export function ChatProvider({ children }) {
 
     setMessagesByRoom((prev) => ({
       ...prev,
-      [roomId]: [...ChatContext(prev[roomId] || []), msg],
+      [roomId]: [...(prev[roomId] || []), msg],
     }));
 
     setIsTyping(true);
