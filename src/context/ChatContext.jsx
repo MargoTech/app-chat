@@ -4,9 +4,22 @@ import { fakeReply } from "../utils/mockSocket";
 const ChatContext = createContext();
 
 export function ChatProvider({ children }) {
-  const [messagesByRoom, setMessagesByRoom] = useState([]);
+  const [messagesByRoom, setMessagesByRoom] = useState(() => {
+    try {
+      const saved = localStorage.getItem("messagesByRoom");
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) {
+      console.error("Failed to load messages from localStorage", e);
+      return {};
+    }
+  });
+
   const username = localStorage.getItem("username");
   const [isTyping, setIsTyping] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("messagesByRoom", JSON.stringify(messagesByRoom));
+  }, [messagesByRoom]);
 
   const sendMessage = (roomId, text) => {
     const msg = {
