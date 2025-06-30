@@ -35,6 +35,7 @@ export default function ChatRoom() {
             sender={msg.sender}
             text={msg.text}
             isOwn={msg.sender === username}
+            timestamp={msg.timestamp}
           />
         ))}
 

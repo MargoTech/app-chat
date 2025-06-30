@@ -1,4 +1,9 @@
-export default function MessageBubble({ sender, text, isOwn }) {
+export default function MessageBubble({ sender, text, isOwn, timestamp }) {
+  const time = new Date(timestamp).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   return (
     <div className={`flex ${isOwn ? "justify-end" : "justify-start"}`}>
       <div
@@ -7,6 +12,13 @@ export default function MessageBubble({ sender, text, isOwn }) {
       >
         <p className="font-semibold">{sender}</p>
         <p>{text}</p>
+        <span
+          className={`block text-[10px] mt-1 ${
+            isOwn ? "text-blue-100" : "text-gray-500"
+          }`}
+        >
+          {time}
+        </span>
       </div>
     </div>
   );
