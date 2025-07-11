@@ -22,6 +22,50 @@ export function ChatProvider({ children }) {
   }, [messagesByRoom]);
 
   const sendMessage = (roomId, text) => {
+    if (!text.trim()) return;
+
+    if (text.startsWith("/")) {
+      const [command, ...args] = text.slice(1).split(" ");
+      const argText = args.join(" ");
+
+      switch (command) {
+        case "help":
+          addBotNessage(
+            roomId,
+            `Available commands:
+            - /help
+            - /name NewName
+            - /clear
+            - /rooms
+            - /joke
+            `
+          );
+          return;
+
+        case "clear":
+          setMessagesByRoom((prev) => ({
+            ...prev,
+            [roomId]: [],
+          }));
+          return;
+
+        case "joke":
+          addBotNessage(
+            roomId,
+            "Why do programmers prefer dark mode? Because light attracts bugs."
+          );
+          return;
+
+        case "rooms":
+          addBotNessage(roomId, "Rooms: general, tech, random");
+          return;
+
+        default:
+          addBotNessage(roomId, `Unknown command: /${command}`);
+          return;
+      }
+    }
+
     const msg = {
       id: crypto.randomUUID(),
       sender: username,
