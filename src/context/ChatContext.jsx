@@ -30,7 +30,7 @@ export function ChatProvider({ children }) {
 
       switch (command) {
         case "help":
-          addBotNessage(
+          addBotMessage(
             roomId,
             `Available commands:
             - /help
@@ -50,18 +50,18 @@ export function ChatProvider({ children }) {
           return;
 
         case "joke":
-          addBotNessage(
+          addBotMessage(
             roomId,
             "Why do programmers prefer dark mode? Because light attracts bugs."
           );
           return;
 
         case "rooms":
-          addBotNessage(roomId, "Rooms: general, tech, random");
+          addBotMessage(roomId, "Rooms: general, tech, random");
           return;
 
         default:
-          addBotNessage(roomId, `Unknown command: /${command}`);
+          addBotMessage(roomId, `Unknown command: /${command}`);
           return;
       }
     }
@@ -90,6 +90,20 @@ export function ChatProvider({ children }) {
       }, 1000);
     });
   };
+
+  function addBotMessage(roomId, text) {
+    const botMsg = {
+      id: crypto.randomUUID(),
+      sender: "🤖 Bot",
+      text,
+      timestamp: new Date().toISOString(),
+    };
+
+    setMessagesByRoom((prev) => ({
+      ...prev,
+      [roomId]: [...ChatContext(prev[roomId] || []), botMsg],
+    }));
+  }
 
   return (
     <ChatContext.Provider
