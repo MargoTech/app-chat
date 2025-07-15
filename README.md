@@ -1,12 +1,44 @@
-# React + Vite
+# 💬 Chat App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern real-time chat application built with React and Firebase. Users can join chat rooms, send and receive messages instantly, and enjoy a clean, responsive UI.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚡ Real-time messaging (via Firebase Realtime Database)
+- 🔐 Firebase Authentication (sign up / login)
+- 🧑‍🤝‍🧑 Create or join custom chat rooms
+- 🕒 Timestamps and message history
+- 🎨 Beautiful, responsive design with Tailwind CSS
+- 🌐 Routing with React Router
+- ⚙️ State management via Context API
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React + Vite
+- JavaScript (ES6+)
+- Firebase (Auth + Database)
+- TailwindCSS
+- React Router DOM
+- Context API
+- Deployed via Vercel
+
+## 🔗 Live Demo
+
+👉 [app-chat-liard.vercel.app](https://app-chat-liard.vercel.app)
+
+## 📸 Screenshots
+
+<!-- Add your screenshots below -->
+<p align="center">
+  <img src="https://your-screenshot-link.png" alt="Chat App UI" width="600"/>
+</p>
+
+## 🧑‍💻 Getting Started
+
+To run the app locally:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/MargoTech/app-chat.git
+cd app-chat
