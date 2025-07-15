@@ -24,7 +24,7 @@ A modern real-time chat application built with React and Firebase. Users can joi
 
 ## 🔗 Live Demo
 
-👉 [app-chat-liard.vercel.app](https://app-chat-liard.vercel.app)
+👉 [Live](https://app-chat-liard.vercel.app)
 
 ## 📸 Screenshots
 
